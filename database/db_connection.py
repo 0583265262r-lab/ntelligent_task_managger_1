@@ -5,7 +5,6 @@ class DBconnection:
         self.host = "localhost"
         self.user = "root"
         self.password = "1234"
-        
         self.database="Intelligence_db"
         self.create_database()
         self.create_tables()
