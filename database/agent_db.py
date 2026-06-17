@@ -97,8 +97,6 @@ class AgentDB:
     def get_agent_performance(self,id:int):
         if not self.get_agent_by_id(id):
             raise ValueError("id not found")
-        conn = connection.get_connection()
-        cursor  = conn.cursor(dictionary=True)
         completed = self.get_agent_by_id(id)["completed_missions"]
         failed = self.get_agent_by_id(id)["failed_missions"]
         total = completed + failed
@@ -108,17 +106,30 @@ class AgentDB:
                 "total":total,
                 "success_rate":success_rate
                 }
-        
+    def count_active_agents(self):
+        conn = connection.get_connection()
+        cursor  = conn.cursor(dictionary=True)
+        query = "SELECT COUNT(*) AS active_agents FROM agents WHERE is_active = TRUE"
+        cursor.execute(query)
+        active_agents = cursor.fetchone()
+        conn.close()
+        cursor.close()
+        return active_agents
+
+
+
 
         
 if __name__ == "__main__":
     c1 =AgentDB()
     # print(c1.create_agent({"name":"avi","specialty":"hbdfhb","agent_rank":"Senior"}))
-    # print(c1.get_all_agents())
+    print(c1.get_all_agents())
     # print(c1.get_agent_by_id(3))
     # print(c1.update_agent(3,{"name":"moshe"}))
     # print(c1.deactivate_agent(1))
     # print(c1.increment_completed(3))
-    print(c1.increment_failed(1))
+    # print(c1.increment_failed(1))
     # print(c1.get_agent_performance(3))
+    print(c1.count_active_agents())
+
 
