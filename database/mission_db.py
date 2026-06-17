@@ -1,5 +1,8 @@
 from database.db_connection import DBconnection
+from database.agent_db import AgentDB
+agentdb= AgentDB()
 connection = DBconnection()
+
  
 class MissionDB:
     def create_mission(self,data:dict):
@@ -49,6 +52,7 @@ class MissionDB:
         if not mission:
             return None
         return mission
+    def assign_mission(m_id,a_id):
 if __name__ == "__main__":
     c1 = MissionDB()
     # print(c1.create_mission({"title":"ydeg","description":'ghg','location':'ggg','difficulty':9,'importance':9}))
