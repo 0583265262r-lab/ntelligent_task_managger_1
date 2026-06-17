@@ -49,7 +49,7 @@ class DBconnection:
         "location VARCHAR(50) NOT NULL,"
         "difficulty INT NOT NULL,"
         "importance INT NOT NULL," \
-        "status ENUM('new','assigned','in_progress','completed','failed','cancelled'),"
+        "status VARCHAR(50) DEFAULT 'new' NOT NULL,"
         "risk_level VARCHAR(50) NOT NULL,"
         "assigned_agent_id INT DEFAULT NULL)")
         for query in sql:

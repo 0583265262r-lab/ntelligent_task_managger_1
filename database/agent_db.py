@@ -41,6 +41,8 @@ class AgentDB:
         set_parts = []
         for key in data.keys():
             set_parts.append(key)
+        # if "id" in set_parts:
+        #     set_parts.remove("id")
         set_query = ", ".join(set_parts)
         query = f"UPDATE agents SET {set_query} = %s WHERE id = %s"
         val = list(data.values()) + [id]
