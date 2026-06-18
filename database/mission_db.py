@@ -147,7 +147,8 @@ class MissionDB:
     def risk_level_critical(self,m_id,a_id):
         if self.get_mission_by_id(m_id)["risk_level"] == 'critical':
             if agentdb.get_agent_by_id(a_id)["agent_rank"]!="Commander":
-                raise ValueError("Only a Commander-ranked agent can accept the mission.")
+                return None
+        return True
     # def status_update_rules(self,id,status):
     #     current_mission = self.get_mission_by_id(id)
     #     if status == "assigned":
@@ -160,11 +161,12 @@ if __name__ == "__main__":
     # print(c1.create_mission({"title":"ydeg","description":'ghg','location':'ggg','difficulty':758,'importance':9}))
     # print(c1.get_all_missions())
     # print(c1.get_mission_by_id(3))
-    print(c1.assign_mission(1,3))
+    # print(c1.assign_mission(1,3))
     # print(c1.update_mission_status(3,"hhhniuh"))
-    print(c1.get_open_missions_by_agent(3))
+    # print(c1.get_open_missions_by_agent(3))
     # print(c1.count_all_missions())
     # print(c1.count_by_status("in_progress"))
     # print(c1.count_critical_missions())
     # print(c1.get_top_agent())
+    print(c1.risk_level_critical(10,7))
 

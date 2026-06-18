@@ -40,9 +40,10 @@ class AgentDB:
         cursor  = conn.cursor(dictionary=True)
         set_parts = []
         for key in data.keys():
-            set_parts.append(key)
+            set_parts.append(f"{key}=%s")
         set_query = ", ".join(set_parts)
-        query = f"UPDATE agents SET {set_query} = %s WHERE id = %s"
+        print(set_query)
+        query = f"UPDATE agents SET {set_query} WHERE id = %s"
         val = list(data.values()) + [id]
         cursor.execute(query,val)
         conn.commit()
