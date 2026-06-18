@@ -100,6 +100,12 @@ class AgentDB:
         completed = self.get_agent_by_id(id)["completed_missions"]
         failed = self.get_agent_by_id(id)["failed_missions"]
         total = completed + failed
+        if not total:
+            return {"completed":completed,
+                "failed":failed,
+                "total":total,
+                "success_rate":0
+                }
         success_rate = (completed / total) * 100
         return {"completed":completed,
                 "failed":failed,
@@ -129,10 +135,10 @@ class AgentDB:
         
 if __name__ == "__main__":
     c1 =AgentDB()
-    print(c1.create_agent({"name":"avi","specialty":"hbdfhb","agent_rank":"Senior"}))
+    # print(c1.create_agent({"name":"avi","specialty":"hbdfhb","agent_rank":"Senior"}))
     # print(c1.get_all_agents())
     # print(c1.get_agent_by_id(3))
-    # print(c1.update_agent(3,{"name":"moshe"}))
+    print(c1.update_agent(1,{"name":"moshe"}))
     # print(c1.deactivate_agent(1))
     # print(c1.increment_completed(3))
     # print(c1.increment_failed(1))
