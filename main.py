@@ -15,4 +15,5 @@ app.include_router(report_routes.router)
 
 
 if __name__ == "__main__":
+    connection = DBconnection()
     uvicorn.run("main:app",reload=True,port=8000)
